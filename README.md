@@ -15,7 +15,7 @@
 ## Hosting
 
 • This Online quiz application is hosted in [Python Anywhere](https://www.pythonanywhere.com/).<br />
-• The URL of the application is **[Online Quiz Application](http://quizfortestpress.pythonanywhere.com/)**<br />
+• The URL of the application is **[Click Here For Online Quiz Application](http://quizfortestpress.pythonanywhere.com/)**.<br />
 
 ## Installation
 
