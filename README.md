@@ -15,7 +15,7 @@
 ## Hosting
 
 • This Online quiz application is hosted in [Python Anywhere](https://www.pythonanywhere.com/).<br />
-• The URL of the application is **[Click Here](http://quizfortestpress.pythonanywhere.com/)** for Online Quiz Application.<br />
+• The URL of the application is **[Click Here](http://quizfortestpress.pythonanywhere.com/)** for launching Online Quiz Application.<br />
 
 ## Installation
 
@@ -50,7 +50,6 @@ Install project dependencies:
 Then simply apply the migrations:
 
     $ python manage.py migrate
-    
 
 You can now run the development server:
 
@@ -59,7 +58,6 @@ You can now run the development server:
 You can create super user:
 
     $ python manage.py createsuperuser
-    
 
 You can perform unit testing:
 
