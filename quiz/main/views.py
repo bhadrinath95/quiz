@@ -22,6 +22,9 @@ class Register(View):
         saveForm=UserCreationForm(request.POST)
         if saveForm.is_valid():
             saveForm.save()
+            messages.success(request,'User is created successfully')
+        else:
+            messages.error(request,'User creation is failed')
         return redirect('/accounts/register')
     
 class Home(View):
@@ -124,26 +127,25 @@ class CreateQuiz(View):
     
 class QuizResult(View):
     def get(self,request,cat_id):
-        if request.user.is_superuser:
-            category=Quiz.objects.get(id=cat_id)
-            question_count = Answer.objects.filter(user=request.user,category=category).count()
-            right_ans = Answer.objects.filter(user=request.user,category=category,status=True).count()
-            result_inst = Result.objects.get(user=request.user,category=category)
-            if result_inst.end_time is None:
-                result_inst.end_time= timezone.now()
-                result_inst.total_questions = question_count
-                result_inst.total_right_answers  = right_ans
-                score=right_ans*100/question_count
-                result_inst.total_score = score
-                result_inst.save()
-                
-            duration = result_inst.end_time - result_inst.start_time
-            return render(request, 'quizresult.html', {'result_inst':result_inst, 'duration':  int(duration.total_seconds() / 60) % 60 })
-        else:
-            return HttpResponse('Unauthorized', status=401)
-        
+        category=Quiz.objects.get(id=cat_id)
+        question_count = Answer.objects.filter(user=request.user,category=category).count()
+        right_ans = Answer.objects.filter(user=request.user,category=category,status=True).count()
+        result_inst = Result.objects.get(user=request.user,category=category)
+        if result_inst.end_time is None:
+            result_inst.end_time= timezone.now()
+            result_inst.total_questions = question_count
+            result_inst.total_right_answers  = right_ans
+            score=right_ans*100/question_count
+            result_inst.total_score = score
+            result_inst.save()
+            
+        duration = result_inst.end_time - result_inst.start_time
+        return render(request, 'quizresult.html', {'result_inst':result_inst, 'duration':  int(duration.total_seconds() / 60) % 60 })
+
 class ShowResult(View):
     def get(self,request):
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login')
         results = Result.objects.filter(user=request.user)
         return render(request,'result.html',{
             'results':results

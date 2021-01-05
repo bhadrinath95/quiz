@@ -12,6 +12,9 @@
             </tr>
         </table>
     </form>
+    {% for msg in messages %}
+    <p class="{{ msg.tags }}">{{msg}}</p>
+    {% endfor %}
     <p>If you are already registered then please <a href="/accounts/login">login</a> here.</p>
 </main>
 {% endblock %}

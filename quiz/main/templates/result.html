@@ -10,12 +10,14 @@
             <th>TOTAL SCORE</th>
         </tr>
     	{% for result in results %}
-    	<tr>
-            <td>{{result.category}}</td>
-            <td>{{result.total_questions}}</td>
-            <td>{{result.total_right_answers}}</td>
-            <td>{{result.total_score}}%</td>
-        </tr>
+    	{% if result.total_score %}
+	    	<tr>
+	            <td>{{result.category}}</td>
+	            <td>{{result.total_questions}}</td>
+	            <td>{{result.total_right_answers}}</td>
+	            <td>{{result.total_score|floatformat:2}}%</td>
+	        </tr>
+        {% endif %}
     	{% endfor %}
     </table>
 </main>
