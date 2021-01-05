@@ -17,11 +17,6 @@
 • This Online quiz application is hosted in [Python Anywhere](https://www.pythonanywhere.com/).<br />
 • The URL of the application is **[Click Here](http://quizfortestpress.pythonanywhere.com/)** for launching Online Quiz Application.<br />
 
-## Installation
-
-•	pip install django==3.1.5<br />
-•	pip install requests==2.25.1<br />
-
 ## Software Versions Used
 
 •	Python- 3.8.5<br />
