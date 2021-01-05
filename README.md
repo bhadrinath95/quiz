@@ -25,35 +25,3 @@
 •	JQuery- 3.5.1<br />
 •	Bootstrap- 5.0.0<br />
 •	Requests- 2.25.1<br />
-
-## Getting Started
-
-First clone the repository from Github
-
-    $ git clone https://github.com/bhadrinath95/quiz
-    $ cd quiz
-    
-Create a virtual environment
-
-    $ mkvirtualenv --python=/usr/bin/python3.8 myenv
-    
-Install project dependencies:
-
-    $ pip install django==3.1.5
-    $ pip install requests==2.25.1
-    
-Then simply apply the migrations:
-
-    $ python manage.py migrate
-
-You can now run the development server:
-
-    $ python manage.py runserver
-    
-You can create super user:
-
-    $ python manage.py createsuperuser
-
-You can perform unit testing:
-
-    $ python manage.py test
