@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<main class="container mt-3">
+    <h4 class="mb-3 border-bottom pb-1">Register</h4>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            {{form.as_table}}
+            <tr>
+                <td colspan="2"><input type="submit" class="btn btn-primary" /></td>
+            </tr>
+        </table>
+    </form>
+    {% for msg in messages %}
+    <p class="{{ msg.tags }}">{{msg}}</p>
+    {% endfor %}
+    <p>If you are already registered then please <a href="/accounts/login">login</a> here.</p>
+</main>
+{% endblock %}

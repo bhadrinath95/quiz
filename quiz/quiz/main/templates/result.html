@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block title %}My Result{% endblock %}
+{% block content %}
+<main class="container mt-3">
+    <table class="table table-bordered">
+    	<tr>
+            <th>CATEGORY</th>
+            <th>TOTAL ANSWERED</th>
+            <th>TOTAL RIGHT ANSWERED</th>
+            <th>TOTAL SCORE</th>
+        </tr>
+    	{% for result in results %}
+    	{% if result.total_score %}
+	    	<tr>
+	            <td>{{result.category}}</td>
+	            <td>{{result.total_questions}}</td>
+	            <td>{{result.total_right_answers}}</td>
+	            <td>{{result.total_score}}%</td>
+	        </tr>
+        {% endif %}
+    	{% endfor %}
+    </table>
+</main>
+{% endblock %}

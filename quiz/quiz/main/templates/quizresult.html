@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block title %}My Result{% endblock %}
+{% block content %}
+<main class="container mt-3">
+    <table class="table table-bordered">
+        <tr><th>Total Question</th> <td>{{result_inst.total_questions}}</td></tr>
+        <tr><th>Duration</th> <td>{{duration}} Minutes</td></tr>
+        <tr><th>Total Right Answered</th> <td>{{result_inst.total_right_answers}}</td></tr>
+        <tr><th>Total Score</th> <td>{{result_inst.total_score}}%</td></tr>
+    </table>
+</main>
+{% endblock %}

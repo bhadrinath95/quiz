@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{% block content %}
+<main class="container mt-3">
+    <div class="row">
+        <!-- Questions -->
+        <div class="col-md-8">
+            <h4 class="mb-3 pb-1 border-bottom">All Questions of {{category.title}}</h4>
+            {% if request.user.is_authenticated %}
+            {% for msg in messages %}
+            <p class="{{ msg.tags }}">{{msg}}</p>
+            {% endfor %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="list-group">
+                    {% if data %}
+                        {% for q in data %}
+                        <div class="card shadow bg-primary mb-4">
+                            <div class="card-header text-white fw-bold">{{q.title | safe}}</div>
+                            <div class="list-group-flush">
+                                <li class="list-group-item">
+                                    {% if submittedAnswer == q.answer_1 %}
+                                    <input type="radio" checked name="quest" id="answer1" value="{{q.answer_1}}" />
+                                    {% else %}
+                                    <input type="radio" name="quest" id="answer1" value="{{q.answer_1}}" />                                    
+                                    {% endif %}
+                                    <label for="answer1">{{q.answer_1}}</label>
+                                </li>
+                                <li class="list-group-item">
+                                    {% if submittedAnswer == q.answer_2 %}
+                                    <input type="radio" checked name="quest" id="answer2" value="{{q.answer_2}}" />
+                                    {% else %}
+                                    <input type="radio" name="quest" id="answer2" value="{{q.answer_2}}" />                                    
+                                    {% endif %}
+                                    <label for="answer2">{{q.answer_2}}</label>
+                                </li>
+                                <li class="list-group-item">
+                                    {% if submittedAnswer == q.answer_3 %}
+                                    <input type="radio" checked name="quest" id="answer3" value="{{q.answer_3}}" />
+                                    {% else %}
+                                    <input type="radio" name="quest" id="answer3" value="{{q.answer_3}}" />
+                                    {% endif %}
+                                    <label for="answer3">{{q.answer_3}}</label>
+                                </li>
+                                <li class="list-group-item">
+                                    {% if submittedAnswer == q.answer_4 %}
+                                    <input type="radio" checked name="quest" id="answer4" value="{{q.answer_4}}" />
+                                    {% else %}
+                                    <input type="radio" name="quest" id="answer4" value="{{q.answer_4}}" />
+                                    {% endif %}
+                                    <label for="answer4">{{q.answer_4}}</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input type="hidden" value="{{q.id}}" name="q_id" />
+                                    <input type="submit" class="btn btn-dark" />
+                                </li>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </form>
+            {% if data.has_other_pages %}
+                <ul class="pagination">
+                    {% if data.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ data.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                    <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                    {% endif %}
+                    {% for i in data.paginator.page_range %}
+                    {% if data.number == i %}
+                        <li class="active page-item"><span class="page-link">{{ i }} </span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if data.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ data.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            {% else %}
+            <p>Please <a href="/accounts/login">login</a> to submit the answer</p>
+            {% endif %}
+        </div>
+        <!-- Right Answer -->
+        <div class="col-md-4">
+        {% if submittedAnswer %}
+        
+            <h4 class="mb-3 pb-1 border-bottom">Right Answer</h4>
+                {% for quest in data %}
+                    <h6 class="text-success">{{quest.right_ans}}</h6>
+                {% endfor %}
+        	<h4 class="mb-3 pb-1 border-bottom">Submit Answer</h4>
+        	<input type="button" onclick="location.href='/result/{{category.id}}';" value="Submit Quiz" />
+        {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %}

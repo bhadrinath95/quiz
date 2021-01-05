@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<main class="container mt-3">
+    <h4 class="mb-3 border-bottom pb-1">Login</h4>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            {{form.as_table}}
+            <tr>
+                <td colspan="2"><input type="submit" class="btn btn-primary" /></td>
+            </tr>
+        </table>
+    </form>
+    <p>If you are not registered then please <a href="/accounts/register">register</a> here.</p>
+</main>
+{% endblock %}
