@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block content %}
+<main class="container mt-3">
+    <div class="row">
+        <!-- Categories -->
+        <div class="col-md-6">
+            <h4 class="mb-3 pb-1 border-bottom">Create Quiz</h4>
+            <div class="list-group">
+            	<form method='POST' action='' enctype='multipart/form-data'>
+				{% csrf_token %}
+                <table>
+				{% for field in form %}
+				<tr>
+				<th>
+				{{field.label}} {% if field.field.required %} * {% endif %}
+				</th>
+				<td>
+				{{field}}
+				</td>
+				</tr>
+				{% endfor %}
+				</table>
+				<hr />
+				<input type='submit' value='Generate' style="background:#034f84;color:white;"/>
+				</form>
+            </div>
+        </div>
+        <!-- Top Users -->
+        <div class="col-md-6">
+            <h4 class="mb-3 pb-1 border-bottom">Questions</h4>
+            <ul class="list-group">
+                {% if questions %}
+                    {% for question in questions %}
+                    <li class="list-group-item">{{question.title | safe}}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}

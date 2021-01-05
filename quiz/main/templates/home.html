@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+<main class="container mt-3">
+    <div class="row">
+        <!-- Categories -->
+        <div class="col-md-6">
+            <h4 class="mb-3 pb-1 border-bottom">All Categories</h4>
+            <div class="list-group">
+                {% if data %}
+                    {% for cat in data %}
+                    <a href="/category/{{cat.id}}" class="list-group-item">{{cat.name}} <span class="badge bg-secondary float-end">{{cat.numberOfQuestions}}</span></a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <!-- Top Users -->
+        <div class="col-md-6">
+            <h4 class="mb-3 pb-1 border-bottom">Recent Users</h4>
+            <ul class="list-group">
+                {% if users %}
+                    {% for user in users %}
+                    <li class="list-group-item">{{user.username}}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
