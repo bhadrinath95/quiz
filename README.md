@@ -1,7 +1,7 @@
 # Online Quiz Application
 
 • Online quiz application aids for the schools which wants to conduct online quiz for its students. Students should be able to start the quiz, get the questions, select their answers and view the results. <br />
-• This Online quiz application uses [Open Trivia Database](https://opentdb.com/)for fetching the questions and answers. <br />
+• This Online quiz application uses [Open Trivia Database](https://opentdb.com/) for fetching the questions and answers. <br />
 
 ## Instructions
 
@@ -26,6 +26,7 @@
 
 •	Python- 3.8.5<br />
 •	Django- 2.25.1<br />
+•	SQLite3- 2.6.0<br />
 •	JQuery- 3.5.1<br />
 •	Bootstrap- 5.0.0<br />
 •	Requests- 2.25.1<br />
